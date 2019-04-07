@@ -4,4 +4,7 @@ import hu.danielelek.android.pad.ui.Presenter
 
 class MainPresenter : Presenter<MainScreen>() {
 
+    fun refreshPublicApiList() {
+        screen?.refreshApiList()
+    }
 }
