@@ -49,6 +49,10 @@ class MainActivity : AppCompatActivity(), MainScreen, NavigationView.OnNavigatio
         mainPresenter.detachScreen()
     }
 
+    override fun refreshApiList() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
