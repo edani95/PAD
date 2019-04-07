@@ -37,9 +37,3 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
-notifications:
-  email:
-    recipients:
-    - btomi96@gmail.com
-    on_success: always
-    on_failure: always
