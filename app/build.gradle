@@ -43,4 +43,11 @@ dependencies {
     implementation 'com.google.dagger:dagger:2.21'
     kapt 'com.google.dagger:dagger-compiler:2.21'
     implementation 'com.android.support:recyclerview-v7:27.1.1'
+
+    def room_version = "2.1.0-alpha07"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version" // For Kotlin use kapt instead of annotationProcessor
+    // Test helpers
+    testImplementation "androidx.room:room-testing:$room_version"
 }
