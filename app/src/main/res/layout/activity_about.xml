@@ -7,4 +7,31 @@
         android:layout_height="match_parent"
         tools:context=".ui.about.AboutActivity">
 
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <ImageView
+                android:id="@+id/ivAuth"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_margin="10dp"
+                android:scaleType="fitXY"
+                android:src="@android:drawable/star_big_on"
+                android:layout_gravity="center"/>
+
+        <TextView
+                android:id="@+id/tvApiTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lorem_ipsum"
+                android:textColor="#000000"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:layout_margin="10dp"
+                android:layout_gravity="center"/>
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

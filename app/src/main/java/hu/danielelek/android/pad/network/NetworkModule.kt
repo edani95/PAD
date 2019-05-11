@@ -12,6 +12,10 @@ class NetworkModule {
 
     @Provides
     @Singleton
+    fun provideOkHttpClient() = OkHttpClient()
+
+    @Provides
+    @Singleton
     fun provicePublicApisApi(client: OkHttpClient) : PublicApiApi {
         val retrofit = Retrofit.Builder()
             .client(client)

@@ -1,5 +1,6 @@
 package hu.danielelek.android.pad.ui.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
@@ -9,10 +10,13 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.RecyclerView.LayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import hu.danielelek.android.pad.R
 import hu.danielelek.android.pad.injector
+import hu.danielelek.android.pad.model.StoredApi
+import hu.danielelek.android.pad.ui.about.AboutActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import javax.inject.Inject
@@ -22,6 +26,12 @@ class MainActivity : AppCompatActivity(), MainScreen, NavigationView.OnNavigatio
     @Inject
     lateinit var mainPresenter: MainPresenter
 
+    private var publicApiList : ArrayList<StoredApi> = arrayListOf()
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var viewAdapter: RecyclerView.Adapter<*>
+    private lateinit var viewManager: RecyclerView.LayoutManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -29,6 +39,16 @@ class MainActivity : AppCompatActivity(), MainScreen, NavigationView.OnNavigatio
 
         injector.inject(this)
 
+        viewManager = LinearLayoutManager(this)
+        viewAdapter = ApiAdapter(this, publicApiList)
+
+        recyclerView = findViewById<RecyclerView>(R.id.rec_view).apply {
+            setHasFixedSize(true)
+
+            layoutManager = viewManager
+
+            adapter = viewAdapter
+        }
 
         val toggle = ActionBarDrawerToggle(
             this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
@@ -49,8 +69,13 @@ class MainActivity : AppCompatActivity(), MainScreen, NavigationView.OnNavigatio
         mainPresenter.detachScreen()
     }
 
-    override fun refreshApiList() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun refreshApiList(publicApis: List<StoredApi>) {
+        publicApiList.clear()
+        publicApiList.addAll(publicApis)
+
+        this.runOnUiThread{
+            viewAdapter.notifyDataSetChanged()
+        }
     }
 
     override fun onBackPressed() {
@@ -72,7 +97,10 @@ class MainActivity : AppCompatActivity(), MainScreen, NavigationView.OnNavigatio
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         when (item.itemId) {
-            R.id.action_settings -> return true
+            R.id.action_settings -> {
+                mainPresenter.refreshPublicApiList()
+                return true
+            }
             else -> return super.onOptionsItemSelected(item)
         }
     }
@@ -81,10 +109,10 @@ class MainActivity : AppCompatActivity(), MainScreen, NavigationView.OnNavigatio
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_apis -> {
-                // Handle the apis action
             }
             R.id.nav_about -> {
-
+                val intent = Intent(this, AboutActivity::class.java)
+                startActivity(intent)
             }
         }
 

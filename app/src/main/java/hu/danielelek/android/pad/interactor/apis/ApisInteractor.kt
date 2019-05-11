@@ -9,7 +9,7 @@ class ApisInteractor @Inject constructor(private val publicApiApi: PublicApiApi)
         val getApisQueryCall = publicApiApi.getApiEntries();
         val response = getApisQueryCall.execute()
 
-        return response.body()!!
+        return response.body()!!.entries!!
     }
 
     fun getApi(title: String) {
