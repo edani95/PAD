@@ -11,15 +11,21 @@ abstract class PublicApiDataBase: RoomDatabase() {
     abstract fun publicApiDataDao(): PublicApiDao
 
     companion object {
+        var TEST_MODE = false
+
         private var INSTANCE: PublicApiDataBase? = null
 
         fun getInstance(context: Context): PublicApiDataBase? {
             if(INSTANCE == null){
                 synchronized(PublicApiDataBase::class) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                        PublicApiDataBase::class.java, "publicapis.db")
-                        .build()
-                }
+                    if(TEST_MODE) {
+                        INSTANCE = Room.inMemoryDatabaseBuilder(context.getApplicationContext(), PublicApiDataBase::class.java).allowMainThreadQueries().build()
+                    } else {
+                        INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                            PublicApiDataBase::class.java, "publicapis.db")
+                            .build()
+            }
+        }
             }
 
             return INSTANCE

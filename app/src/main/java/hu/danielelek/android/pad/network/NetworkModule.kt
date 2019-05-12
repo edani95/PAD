@@ -16,7 +16,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provicePublicApisApi(client: OkHttpClient) : PublicApiApi {
+    fun providePublicApisApi(client: OkHttpClient) : PublicApiApi {
         val retrofit = Retrofit.Builder()
             .client(client)
             .baseUrl(NetworkConfig.API_ENDPOINT_ADDRESS)
