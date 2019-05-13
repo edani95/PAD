@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1027446456965",
+    "firebase_url": "https://moblabfb.firebaseio.com",
+    "project_id": "moblabfb",
+    "storage_bucket": "moblabfb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1027446456965:android:c67f8295ec72db1e",
+        "android_client_info": {
+          "package_name": "hu.danielelek.android.pad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1027446456965-0o3gp9a1dllrvom5td56ra6utn3jtpiv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpZDf0iALfyCrZUhV7xcOpAeFjrG2_lHI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1027446456965-0o3gp9a1dllrvom5td56ra6utn3jtpiv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

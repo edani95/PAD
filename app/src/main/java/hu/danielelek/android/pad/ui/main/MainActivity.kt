@@ -111,6 +111,7 @@ class MainActivity : AppCompatActivity(), MainScreen, NavigationView.OnNavigatio
             R.id.nav_apis -> {
             }
             R.id.nav_about -> {
+                throw new RuntimeException("This is a crash");
                 val intent = Intent(this, AboutActivity::class.java)
                 startActivity(intent)
             }
